@@ -31,6 +31,7 @@ Teamodoro = {
   },
   
   refreshPomodoro: function(countdown) {
+    this.refreshTitle();
     if (countdown.value > 0)
       $('.pomodoro.countdown var')[0].textContent = countdown.value.toString();
     else
@@ -38,12 +39,17 @@ Teamodoro = {
   },
   
   refreshBreak: function(countdown) {
+    this.refreshTitle();
     if (countdown.value > 0)
       $('.break.countdown var')[0].textContent = countdown.value.toString();
     else
       this.startPomodoro();
   },
   
+  refreshTitle: function() {
+    document.title = this.countdown.value.toString();
+  },
+
   Countdown: function(duration, callback) {
     this.duration = duration;
     this.callback = callback;
