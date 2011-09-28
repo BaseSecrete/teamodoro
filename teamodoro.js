@@ -19,12 +19,14 @@ Teamodoro = {
   },
   
   startPomodoro: function(offset) {
+    favicon.change('red.png');
     this.countdown.reset(this.pomodoroDuration - (offset || 0), this.refreshPomodoro.bind(Teamodoro));
     $('.pomodoro.countdown').removeClass('hidden');
     $('.break.countdown').addClass('hidden');
   },
   
   startBreak: function(offset) {
+    favicon.change('green.png');
     this.countdown.reset(this.breakDuration - (offset || 0), this.refreshBreak.bind(Teamodoro));
     $('.pomodoro.countdown').addClass('hidden');
     $('.break.countdown').removeClass('hidden');
