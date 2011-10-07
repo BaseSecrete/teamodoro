@@ -19,20 +19,21 @@ Teamodoro = {
   },
   
   startPomodoro: function(offset) {
-    favicon.change('red.png');
+    this.isPomodoro = true;
     this.countdown.reset(this.pomodoroDuration - (offset || 0), this.refreshPomodoro.bind(Teamodoro));
     $('.pomodoro.countdown').removeClass('hidden');
     $('.break.countdown').addClass('hidden');
   },
   
   startBreak: function(offset) {
-    favicon.change('green.png');
+    this.isPomodoro = false;
     this.countdown.reset(this.breakDuration - (offset || 0), this.refreshBreak.bind(Teamodoro));
     $('.pomodoro.countdown').addClass('hidden');
     $('.break.countdown').removeClass('hidden');
   },
   
   refreshPomodoro: function(countdown) {
+    this.refreshIcon();
     this.refreshTitle();
     if (countdown.value > 0)
       $('.pomodoro.countdown var')[0].textContent = countdown.value.toString();
@@ -41,6 +42,7 @@ Teamodoro = {
   },
   
   refreshBreak: function(countdown) {
+    this.refreshIcon();
     this.refreshTitle();
     if (countdown.value > 0)
       $('.break.countdown var')[0].textContent = countdown.value.toString();
@@ -50,6 +52,12 @@ Teamodoro = {
   
   refreshTitle: function() {
     document.title = this.countdown.value.toString();
+  },
+
+  refreshIcon: function() {
+    var path = 'images/countdown/'
+    path += this.isPomodoro ? 'pomodoro/' : 'break/';
+    favicon.change(path + this.countdown.value.toString() + '.png');
   },
 
   Countdown: function(duration, callback) {
