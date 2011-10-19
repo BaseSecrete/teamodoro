@@ -9,6 +9,7 @@ Teamodoro = {
   //  55-00 -> Break
   
   start: function() {
+    this.beep = $('#beep')[0];
     this.countdown = new this.Countdown();
     var minutes = (new Date()).getMinutes() % 30;
     
@@ -19,6 +20,7 @@ Teamodoro = {
   },
   
   startPomodoro: function(offset) {
+    this.beep.play();
     this.isPomodoro = true;
     this.countdown.reset(this.pomodoroDuration - (offset || 0), this.refreshPomodoro.bind(Teamodoro));
     $('.pomodoro.countdown').removeClass('hidden');
@@ -26,6 +28,7 @@ Teamodoro = {
   },
   
   startBreak: function(offset) {
+    this.beep.play();
     this.isPomodoro = false;
     this.countdown.reset(this.breakDuration - (offset || 0), this.refreshBreak.bind(Teamodoro));
     $('.pomodoro.countdown').addClass('hidden');
