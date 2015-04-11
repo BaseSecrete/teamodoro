@@ -5,7 +5,7 @@
       html { box-sizing: border-box; }
       *, *:before, *:after { box-sizing: inherit; }
       html, body { background:#342E37; width: 100%; height: 100%; margin: 0; padding: 0; font-family: 'Helvetica Neue, Helvetica', Arial, sans-serif; font-weight: 300; color:#A6A6A4; font-size:16px; line-height:24px; }
-      .bg { background: transparent no-repeat center center fixed; 
+      .bg { background: transparent no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -17,20 +17,20 @@
       footer .credits {  display:inline-block; position:absolute; right:5%; }
       footer a { display:inline; }
       footer a.btn { background:#342E37; padding: 12px; margin-left:12px; position:relative; top:-6px; }
-      
+
       .why { display: none; position: absolute; top:0; right:0; bottom:80px; left:0; background:rgba(0,0,0,0.8); padding:5%; }
       .close { position:absolute; right:5%; }
-      
+
     </style>
   <head>
 
   <body>
-  
+
     <div class="bg" id="bg" style="background-image: url(http://media.giphy.com/media/POsXkh6XRVBhC/giphy.gif);"></div>
-  
+
     <figure id="canvas">
     </figure>
-    
+
     <footer>
       <h1>teamodoro</h1>
       <a href="#" class="btn" id="about">why?</a>
@@ -38,24 +38,28 @@
         Made by  <a href="http://basesecrete.com">Base Secrete</a>
       </nav>
     </footer>
-    
+
     <div class="why" id="why">
       <a class="close" href="#" id="close">close</a>
       <h2>Teamodoro is a pomodoro tool for teams.</h2>
       <h3>Pomodoro?</h3>
       <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals traditionally 25 minutes in length, separated by short breaks. The method is based on the idea that frequent breaks can improve mental agility. <a href="http://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Read more.</a></p>
       <h3>Teamodoro?</h3>
-      <p>The Pomodoro techniques works well for individuals. A team willing to use this technique must synchronize in order to prevent interruptions. 
-       Interruptions kill productivity and require a significant recovery period. <a href="http://thetomorrowlab.com/2015/01/why-developers-hate-being-interrupted/" target="_blank">Read more.</a> 
+      <p>The Pomodoro techniques works well for individuals. A team willing to use this technique must synchronize in order to prevent interruptions.
+       Interruptions kill productivity and require a significant recovery period. <a href="http://thetomorrowlab.com/2015/01/why-developers-hate-being-interrupted/" target="_blank">Read more.</a>
      </p>
     </div>
+    <figure id="canvas"></figure>
   </body>
 
+  <script type="text/javascript" src="javascripts/favicon.js"></script>
+  <script type="text/javascript" src="javascripts/teamodoro.js"></script>
   <script type="text/javascript" src="javascripts/svg.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="javascripts/svg.clock.js" charset="utf-8"></script>
-  <script type="text/javascript" src="javascripts/favicon.js"></script>
+  <script type="text/javascript" src="http://json-time.appspot.com/time.json?callback=Teamodoro.timeCallback" charset="utf-8"></script>
+
   <script type="text/javascript" charset="utf-8">
-    SVG('canvas').clock('100%').start();
+    document.readyState != "loading" ? Teamodoro.start() : document.addEventListener("DOMContentLoaded", Teamodoro.start);
     /*
     document.getElementById('about').addEventListener('click',function(e){
       document.getElementById('why').style.display = 'block';
@@ -63,8 +67,8 @@
     document.getElementById('close').addEventListener('click',function(e){
       document.getElementById('why').style.display = 'none';
     });
-    
-    
+
+
     var request = new XMLHttpRequest();
     request.open('GET', 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=fail', true);
 
@@ -83,7 +87,7 @@
     };
 
     request.send();
-    
+
     var json = JSON.parse(request);
     document.getElementById('bg').style.background-image = json["url"];
     */
