@@ -4,12 +4,13 @@ SVG.Clock = function(size, options) {
 
   /* set defaults */
   settings = {
-    plate:    'transparent'
-  , marks:    'rgba(255,255,255,.1)'
-  , pomodoro: '#EF2B59'
-  , breakcol: '#9FD356'
-  , label:    '#342E37'
-  , minutes:  '#fff'
+    plate:    'transparent',
+    marks:    'rgba(255,255,255,.1)',
+    pomodoro: '#EF2B59',
+    breakcol: '#9FD356',
+    label:    '#342E37',
+    minutes:  '#fff',
+    font: 'Helvetcia Neue, Helvetcia, Arial',
   }
 
   /* merge options */
@@ -35,113 +36,50 @@ SVG.Clock = function(size, options) {
   this.size(size, size)
 
   /* create base plate */
-  this.plate = this.ellipse(100, 100)
-    .fill(settings.plate)
+  this.plate = this.ellipse(100, 100).fill(settings.plate)
 
   /* bar every five minutes */
   for (i = 59; i >= 0; i--)
-    this.rect(1, 3)
-      .move(50, 3)
-      .fill(settings.marks)
-      .rotate(i * 30, 50, 50)
+    this.rect(1, 3).move(50, 3).fill(settings.marks).rotate(i * 30, 50, 50)
 
   /* small bar every minute */
   for (i = 59; i >= 0; i--)
     if (i % 5 != 0)
-      this.rect(1, 1)
-        .move(50, 3)
-        .fill(settings.marks)
-        .rotate(i * 6, 50, 50)
+      this.rect(1, 1).move(50, 3).fill(settings.marks).rotate(i * 6, 50, 50)
 
   /* pomodoro1 */
   for (i = 149; i >= 0; i--)
-    this.rect(1, 3)
-      .move(50.5, 0)
-      .fill(settings.pomodoro)
-      .rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(settings.pomodoro).rotate(i * 1, 50, 50)
 
   /* pomodoro2 */
   for (i = 329; i >= 180; i--)
-    this.rect(1, 3)
-      .move(50.5, 0)
-      .fill(settings.pomodoro)
-      .rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(settings.pomodoro).rotate(i * 1, 50, 50)
 
   /* break1 */
   for (i = 359; i >= 330; i--)
-    this.rect(1, 3)
-      .move(50.5, 0)
-      .fill(settings.breakcol)
-      .rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(settings.breakcol).rotate(i * 1, 50, 50)
 
   /* break2 */
   for (i = 179; i >= 150; i--)
-    this.rect(1, 3)
-      .move(50.5, 0)
-      .fill(settings.breakcol)
-      .rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(settings.breakcol).rotate(i * 1, 50, 50)
 
-/* add Focus label */
-var focuslabel = this.focuslabel = this.text('Focus')
-  .move(50, 20)
-  .fill(settings.pomodoro)
-  .font({
-    anchor: 'middle'
-  , size:   6
-  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
-  , weight: '300'
-  })
+  this.focuslabel = this.text('Focus').move(50, 20).fill(settings.pomodoro).
+    font({anchor: 'middle', size: 6, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'})
 
-var focustime =  this.focustime = this.text('23:28')
-  .move(50, 38)
-  .fill(settings.pomodoro)
-  .font({
-    anchor: 'middle'
-    , size:   18
-  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
-  , weight: '300'
-  })
+  this.focustime = this.text('23:28').move(50, 38).fill(settings.pomodoro)
+    .font({anchor: 'middle', size: 18, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'})
 
+  this.breaklabel = this.text('Break').move(50, 20).fill(settings.breakcol)
+    .font({anchor: 'middle', size: 6, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'});
 
-/* add Focus label */
-var breaklabel = this.breaklabel = this.text('Break')
-  .move(50, 20)
-  .fill(settings.breakcol)
-  .font({
-    anchor: 'middle'
-  , size:   6
-  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
-  , weight: '300'
-  })
+  this.breaktime = this.text('02:18').move(50, 38).fill(settings.breakcol)
+    .font({anchor: 'middle', size:   18, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'});
 
-var breaktime =  this.breaktime = this.text('02:18')
-  .move(50, 38)
-  .fill(settings.breakcol)
-  .font({
-    anchor: 'middle'
-    , size:   18
-  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
-  , weight: '300'
-  })
-
-  /* add clock label */
-  var label = this.label = this.text('minutes left')
-    .move(50, 70)
-    .fill(settings.label)
-    .font({
-      anchor: 'middle'
-    , size:   6
-    , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
-    , weight: '300'
-    })
+  this.label = this.text('minutes left').move(50, 70).fill(settings.label)
+    .font({anchor: 'middle', size: 6, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'});
 
   /* draw minute pointer */
-  this.minutes = this.circle(3)
-    .move(49,0)
-    .fill(settings.minutes)
-
-  /* set pointers without animation */
-  this.update(0)
+  this.minutes = this.circle(3).move(49,0).fill(settings.minutes);
 }
 
 SVG.Clock.prototype = new SVG.Container
@@ -157,46 +95,37 @@ SVG.extend(SVG.Clock, {
     }, 1000)
 
     return this
-  }
-  // Update time
-, update: function(duration) {
-    /* get current time */
-    var time = new Date()
-
-    /* ensure duration */
-    if (duration == null)
-      duration = 300
-
-    /* set all pointers */
-    this
-      .setMinutes(time.getMinutes(), duration)
-    return this
   },
 
-  setMinutes: function(minutes, duration) {
-    if (minutes == this.time.minutes)
-      return this
+  update: function(date) {
+    this.setMinutes(date.getMinutes());
+    return this;
+  },
 
-    /* store minutes */
-    this.time.minutes = minutes
-
-    /* register a full circle */
-    if (minutes == 0)
-      this.full.minutes++
-
-    /* calculate rotation */
+  setMinutes: function(minutes) {
     var deg = this.full.minutes * 360 + 360 / 60 * minutes
+    this.minutes.rotate(deg, 50, 50);
 
-    /* animate if duration is given */
-    if (duration)
-      this.minutes
-        .rotate(deg, 50, 50)
+    if ((minutes >= 25 && minutes <= 29) || (minutes >= 55 && minutes <= 59))
+      this.drawBreakLabels();
     else
-      this.minutes
-        .rotate(deg, 50, 50)
-
-    return this
+      this.drawFocusLabels();
+    return this;
   },
+
+  drawFocusLabels: function() {
+    this.breaklabel.hide();
+    this.breaktime.hide();
+    this.focustime.show();
+    this.focuslabel.show();
+  },
+
+  drawBreakLabels: function() {
+    this.breaklabel.show();
+    this.breaktime.show();
+    this.focustime.hide();
+    this.focuslabel.hide();
+  }
 })
 
 // Extend SVG container

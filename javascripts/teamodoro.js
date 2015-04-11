@@ -3,11 +3,11 @@ Teamodoro = {
 
   start: function() {
     this.clock = SVG("canvas").clock("100%");
-    setInterval(this.updateClock.bind(this), 5000);
+    setInterval(this.updateClock.bind(this), 500);
   },
 
   updateClock: function() {
-    this.clock.setMinutes(this.getMinutes());
+    this.clock.update(this.getDate());
   },
 
   timeCallback: function(response) {
@@ -15,6 +15,10 @@ Teamodoro = {
   },
 
   getMinutes: function() {
-    return new Date(new Date() + this.timeDifference).getMinutes();
+    return new Date(new Date() + this.timeDifference).getSeconds();
+  },
+
+  getDate: function() {
+    return new Date(new Date() + this.timeDifference);
   }
 }
