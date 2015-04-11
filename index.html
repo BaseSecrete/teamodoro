@@ -1,42 +1,24 @@
 <html>
   <head>
     <title>Teamodoro</title>
-    <link rel="stylesheet" type="text/css" href="teamodoro.css"/>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script> 
-    <script type="text/javascript" src="favicon.js"></script>
-    <script type="text/javascript" src="teamodoro.js"></script>
-    
     <style type="text/css" media="screen">
       html, body { background:#342E37; width: 100%; height: 100%; margin: 0; padding: 0; font-family: 'Helvetica Neue, Helvetica', Arial, sans-serif; font-weight: 300; }
       html, a { color: #A6A6A4; }
       #canvas { position: relative; height: 80%; top: 10%; margin: 0 5% 0 5%; }
       #copyright { width: 600px; margin-left: -300px; left: 50%; bottom: 0px; text-align: center; font-size: 10px; position: absolute; }
-      
     </style>
   <head>
+
   <body>
     <figure id="canvas">
     </figure>
-    <div class="root">
-      <audio controls="controls" class="hidden" id="beep">
-        <source src="stop.ogg" type="audio/ogg" />
-        <source src="stop.mp3" type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
-      <div class="countdown pomodoro">
-        <h1>Pomodoro</h1>
-        <h2><var>25</var> minutes left.<h2>
-      </div>
-      <div class="countdown break hidden">
-        <h1>Break</h1>
-        <h2><var>5</var> minutes left.<h2>
-      </div>
-    </div>
-  <body>
-    <script src="lib/svg.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/svg.easing.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="svg.clock.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-      SVG('canvas').clock('100%').start()
-    </script>
+  </body>
+
+  <script src="lib/svg.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="lib/svg.easing.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="svg.clock.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="favicon.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    SVG('canvas').clock('100%').start()
+  </script>
 </html>
