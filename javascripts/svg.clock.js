@@ -80,6 +80,49 @@ SVG.Clock = function(size, options) {
       .move(50.5, 0)
       .fill(settings.breakcol)
       .rotate(i * 1, 50, 50)
+      
+/* add Focus label */
+var focuslabel = this.focuslabel = this.text('Focus')
+  .move(50, 20)
+  .fill(settings.pomodoro)
+  .font({
+    anchor: 'middle'
+  , size:   6
+  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
+  , weight: '300'
+  })
+  
+var focustime =  this.focustime = this.text('23:28')
+  .move(50, 38)
+  .fill(settings.pomodoro)
+  .font({
+    anchor: 'middle'
+    , size:   18
+  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
+  , weight: '300'
+  })
+
+
+/* add Focus label */
+var breaklabel = this.breaklabel = this.text('Break')
+  .move(50, 20)
+  .fill(settings.breakcol)
+  .font({
+    anchor: 'middle'
+  , size:   6
+  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
+  , weight: '300'
+  })
+  
+var breaktime =  this.breaktime = this.text('02:18')
+  .move(50, 38)
+  .fill(settings.breakcol)
+  .font({
+    anchor: 'middle'
+    , size:   18
+  , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
+  , weight: '300'
+  })
   
   /* add clock label */
   var label = this.label = this.text('minutes left')
