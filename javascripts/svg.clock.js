@@ -124,17 +124,6 @@ var breaktime =  this.breaktime = this.text('02:18')
   , weight: '300'
   })
   
-  /* add clock label */
-  var label = this.label = this.text('minutes left')
-    .move(50, 70)
-    .fill(settings.label)
-    .font({
-      anchor: 'middle'
-    , size:   6
-    , family: 'Helvetcia Neue, Helvetcia, Arial' //Source Sans Pro,
-    , weight: '300'
-    })
-  
   /* draw minute pointer */
   this.minutes = this.circle(3)
     .move(49,0)
