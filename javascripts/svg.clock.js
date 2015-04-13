@@ -28,19 +28,19 @@ SVG.Clock = function(size, options) {
 
   /* pomodoro1 */
   for (i = 149; i >= 0; i--)
-    this.rect(1, 3).move(50.5, 0).fill(red).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50, 0).fill(red).rotate(i * 1, 50, 50)
 
   /* pomodoro2 */
   for (i = 329; i >= 180; i--)
-    this.rect(1, 3).move(50.5, 0).fill(red).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50, 0).fill(red).rotate(i * 1, 50, 50)
 
   /* break1 */
   for (i = 359; i >= 330; i--)
-    this.rect(1, 3).move(50.5, 0).fill(green).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50, 0).fill(green).rotate(i * 1, 50, 50)
 
   /* break2 */
   for (i = 179; i >= 150; i--)
-    this.rect(1, 3).move(50.5, 0).fill(green).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50, 0).fill(green).rotate(i * 1, 50, 50)
 
   /* draw minute pointer */
   this.minutes = this.circle(3).move(49,0).fill("#FFF");
