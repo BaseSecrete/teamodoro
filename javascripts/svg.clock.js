@@ -49,13 +49,13 @@ SVG.Clock = function(size, options) {
     font({anchor: 'middle', size: 6, family: font, weight: '300'});
 
   this.focusTime = this.text("").move(50, 38).fill(red).
-    font({anchor: 'middle', size: 18, family: font, weight: '300'});
+    font({anchor: 'middle', size: 18, family: font, weight: '600'});
 
   this.breakLabel = this.text('Break').move(50, 20).fill(green)
     .font({anchor: 'middle', size: 6, family: font, weight: '300'});
 
   this.breakTime = this.text("").move(50, 38).fill(green)
-    .font({anchor: 'middle', size: 18, family: font, weight: '300'});
+    .font({anchor: 'middle', size: 18, family: font, weight: '600'});
 }
 
 SVG.Clock.prototype = new SVG.Container
