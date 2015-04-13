@@ -93,13 +93,13 @@ SVG.extend(SVG.Clock, {
     var seconds = this.date.getSeconds();
 
     if (minutes < 25)
-      return this.formatTime(24 - minutes, 60 - seconds);
+      return this.formatTime(24 - minutes, 59 - seconds);
     else if (minutes < 30)
-      return this.formatTime(29 - minutes, 60 - seconds);
+      return this.formatTime(29 - minutes, 59 - seconds);
     else if (minutes < 55)
-      return this.formatTime(54 - minutes, 60 - seconds);
+      return this.formatTime(54 - minutes, 59 - seconds);
     else
-      return this.formatTime(59 - minutes, 60 - seconds);
+      return this.formatTime(59 - minutes, 59 - seconds);
   },
 
   formatTime: function(minutes, seconds) {

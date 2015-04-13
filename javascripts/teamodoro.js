@@ -1,4 +1,5 @@
 Teamodoro = {
+  lastState: null,
   timeDifference: 0,
 
   start: function() {
@@ -6,7 +7,10 @@ Teamodoro = {
     this.updateClock();
     this.displayRandomGifWhileInBreak();
     setInterval(this.updateClock.bind(this), 500);
-    setInterval(this.displayRandomGifWhileInBreak.bind(this), 30 * 1000);
+    setInterval(this.displayRandomGif.bind(this), 30 * 1000);
+
+    if (this.inBreak())
+      this.displayRandomGif();
 
     document.getElementById('about').addEventListener('click',function() {
       document.getElementById('why').style.display = 'block';
@@ -17,7 +21,10 @@ Teamodoro = {
   },
 
   updateClock: function() {
+    this.beepOnStateChange();
     this.clock.update(this.getDate());
+    this.displayRandomGifWhileInBreak();
+    this.lastState = this.inBreak() ? "break" : "focus";
   },
 
   timeCallback: function(response) {
@@ -33,6 +40,9 @@ Teamodoro = {
   },
 
   displayRandomGif: function() {
+    if (!this.inBreak())
+      return;
+
     var request = new XMLHttpRequest();
     request.open("GET", "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=relax", true);
 
@@ -47,11 +57,18 @@ Teamodoro = {
   },
 
   displayRandomGifWhileInBreak: function() {
-    this.inBreak() ? this.displayRandomGif() : document.getElementById("break-gif").style.display = "none";
+    document.getElementById("break-gif").style.display = this.inBreak() ? "block" : "none";
   },
 
   inBreak: function() {
     var minutes = this.getDate().getMinutes();
-    return (minutes >= 20 && minutes <= 29) || (minutes >= 55 && minutes <= 59);
+    return (minutes >= 25 && minutes <= 29) || (minutes >= 55 && minutes <= 59);
+  },
+
+  beepOnStateChange: function() {
+    if (this.inBreak() && this.lastState == "focus")
+      document.getElementById("beep").play();
+    else if (!this.inBreak() && this.lastState == "break")
+      document.getElementById("beep").play();
   },
 }
