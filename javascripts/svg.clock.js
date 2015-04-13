@@ -89,17 +89,19 @@ SVG.extend(SVG.Clock, {
   },
 
   timeLeftToString: function() {
-    var minutes = this.date.getMinutes();
-    var seconds = this.date.getSeconds();
+    return this.formatTime(this.minutesLeft(), 59 - this.date.getSeconds());
+  },
 
+  minutesLeft: function() {
+    var minutes = this.date.getMinutes();
     if (minutes < 25)
-      return this.formatTime(24 - minutes, 59 - seconds);
+      return 24 - minutes;
     else if (minutes < 30)
-      return this.formatTime(29 - minutes, 59 - seconds);
+      return 29 - minutes;
     else if (minutes < 55)
-      return this.formatTime(54 - minutes, 59 - seconds);
+      return 54 - minutes;
     else
-      return this.formatTime(59 - minutes, 59 - seconds);
+      return 59 - minutes;
   },
 
   formatTime: function(minutes, seconds) {

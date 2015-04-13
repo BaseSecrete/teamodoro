@@ -1,11 +1,11 @@
 Teamodoro = {
   lastState: null,
+  lastMinute: null,
   timeDifference: 0,
 
   start: function() {
     this.clock = SVG("canvas").clock("100%");
     this.updateClock();
-    this.displayRandomGifWhileInBreak();
     setInterval(this.updateClock.bind(this), 500);
     setInterval(this.displayRandomGif.bind(this), 30 * 1000);
 
@@ -21,6 +21,7 @@ Teamodoro = {
   },
 
   updateClock: function() {
+    this.updateIcon();
     this.beepOnStateChange();
     this.clock.update(this.getDate());
     this.displayRandomGifWhileInBreak();
@@ -70,5 +71,15 @@ Teamodoro = {
       document.getElementById("beep").play();
     else if (!this.inBreak() && this.lastState == "break")
       document.getElementById("beep").play();
+  },
+
+  updateIcon: function() {
+    var minutesLeft = this.clock.minutesLeft() + 1;
+    if (this.lastMinute != minutesLeft) {
+      var path = "/images/countdown/";
+      path += this.inBreak() ? "break/" : "focus/";
+      favicon.change(path + minutesLeft + ".png");
+      this.lastMinute = minutesLeft;
+    }
   },
 }
