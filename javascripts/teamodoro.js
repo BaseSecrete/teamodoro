@@ -37,7 +37,7 @@ Teamodoro = {
   },
 
   getDate: function() {
-    return new Date(new Date() + this.timeDifference);
+    return new Date((new Date()).valueOf() + this.timeDifference);
   },
 
   displayRandomGif: function() {
