@@ -14,11 +14,18 @@
         background-size: cover; width:100%; height:100%; position:fixed; opacity:.25; }
       a { color: #f1f1f1; text-decoration:none; }
       #canvas { position: relative; height: calc(100% - 80px - 10%); top: 5%; margin: 0 5%; }
-      footer {  position: fixed; bottom:0; width:100%; height:80px; background:rgba(255,255,255,.1); line-height:80px; vertical-align:center;  padding:0 5%;  }
-      h1 { margin:0; padding:0; display:inline-block; }
+      footer {  position: fixed; bottom:0; width:100%; height:80px; background:rgba(255,255,255,.1); line-height:80px; vertical-align:center;  padding:0 5%; }
+      h1 { margin:0; padding:0; display:inline-block; font-weight:100; color:#EF2B59; float:left; }
+      h1 span { display: none; margin-left:12px; }
+      
+      @media (min-width: 800px) {
+        h1 span { display: inline-block; }
+      }
+      
+      footer img { height:50px; margin:15px 0 0; float:left; }
       footer .credits {  display:inline-block; position:absolute; right:5%; }
       footer a { display:inline; }
-      footer a.btn { background:#342E37; padding: 12px; margin-left:12px; position:relative; top:-6px; }
+      footer a.btn { background:#342E37; margin:15px 12px 0; width:50px; height:50px; text-align:center; font-weight:bold; border-radius:50%; line-height:50px; display:inline-block; }
 
       .why { display: none; position: absolute; top:0; right:0; bottom:80px; left:0; background:rgba(0,0,0,0.8); padding:5%; overflow-y:auto; }
       .close { position:absolute; right:5%; }
@@ -30,8 +37,8 @@
     <figure id="canvas"></figure>
 
     <footer>
-      <h1>Teamodoro</h1>
-      <a href="#" class="btn" id="about">Why?</a>
+      <h1><img src="images/teamodoro.png" alt="logo" /><span>Teamodoro</span></h1>
+      <a href="#" class="btn" id="about">?</a>
       <nav class="credits">
         Made by <a href="http://basesecrete.com">Base Secrète</a>.
       </nav>
@@ -39,7 +46,7 @@
 
     <div class="why" id="why">
       <a class="close" href="#" id="close">close</a>
-      <h2>Teamodoro is a pomodoro timer app for teams.</h2>
+      <h2>Teamodoro is a pomodoro timer for teams.</h2>
       <h3>Pomodoro?</h3>
       <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals traditionally 25 minutes in length, separated by short breaks. The method is based on the idea that frequent breaks can improve mental agility. <a href="http://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Read more.</a></p>
       <h3>Teamodoro?</h3>
