@@ -1,130 +1,115 @@
 /* Clock.svg v0.1 (c) 2013 Wout Fierens - Svg.js is licensed under the terms of the MIT License */
 SVG.Clock = function(size, options) {
-  var i, settings
+  this.date = new Date;
 
-  /* set defaults */
-  settings = {
-    plate:    'transparent',
-    marks:    'rgba(255,255,255,.1)',
-    pomodoro: '#EF2B59',
-    breakcol: '#9FD356',
-    label:    '#342E37',
-    minutes:  '#fff',
-    font: 'Helvetcia Neue, Helvetcia, Arial',
-  }
-
-  /* merge options */
-  options = options || {}
-  for (i in options)
-    settings[i] = options[i]
-
-  /* store full rotations */
-  this.full = {
-    minutes:  0
-  }
-
-  /* store current time */
-  this.time = {
-    minutes:  0
-  }
+  var i;
+  var red = "#EF2B59";
+  var green = "#9FD356";
+  var font = "Helvetcia Neue, Helvetcia, Arial";
 
   /* create nested svg element */
-  this.constructor.call(this, SVG.create('svg'))
+  this.constructor.call(this, SVG.create('svg'));
 
   /* set attributes */
-  this.viewbox(0, 0, 100, 100)
-  this.size(size, size)
+  this.viewbox(0, 0, 100, 100);
+  this.size(size, size);
 
   /* create base plate */
-  this.plate = this.ellipse(100, 100).fill(settings.plate)
+  this.plate = this.ellipse(100, 100).fill("transparent")
 
   /* bar every five minutes */
   for (i = 59; i >= 0; i--)
-    this.rect(1, 3).move(50, 3).fill(settings.marks).rotate(i * 30, 50, 50)
+    this.rect(1, 3).move(50, 3).fill("rgba(255,255,255,.1)").rotate(i * 30, 50, 50)
 
   /* small bar every minute */
   for (i = 59; i >= 0; i--)
     if (i % 5 != 0)
-      this.rect(1, 1).move(50, 3).fill(settings.marks).rotate(i * 6, 50, 50)
+      this.rect(1, 1).move(50, 3).fill("rgba(255,255,255,.1)").rotate(i * 6, 50, 50)
 
   /* pomodoro1 */
   for (i = 149; i >= 0; i--)
-    this.rect(1, 3).move(50.5, 0).fill(settings.pomodoro).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(red).rotate(i * 1, 50, 50)
 
   /* pomodoro2 */
   for (i = 329; i >= 180; i--)
-    this.rect(1, 3).move(50.5, 0).fill(settings.pomodoro).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(red).rotate(i * 1, 50, 50)
 
   /* break1 */
   for (i = 359; i >= 330; i--)
-    this.rect(1, 3).move(50.5, 0).fill(settings.breakcol).rotate(i * 1, 50, 50)
+    this.rect(1, 3).move(50.5, 0).fill(green).rotate(i * 1, 50, 50)
 
   /* break2 */
   for (i = 179; i >= 150; i--)
-    this.rect(1, 3).move(50.5, 0).fill(settings.breakcol).rotate(i * 1, 50, 50)
-
-  this.focuslabel = this.text('Focus').move(50, 20).fill(settings.pomodoro).
-    font({anchor: 'middle', size: 6, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'})
-
-  this.focustime = this.text('23:28').move(50, 38).fill(settings.pomodoro)
-    .font({anchor: 'middle', size: 18, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'})
-
-  this.breaklabel = this.text('Break').move(50, 20).fill(settings.breakcol)
-    .font({anchor: 'middle', size: 6, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'});
-
-  this.breaktime = this.text('02:18').move(50, 38).fill(settings.breakcol)
-    .font({anchor: 'middle', size:   18, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'});
-
-  this.label = this.text('minutes left').move(50, 70).fill(settings.label)
-    .font({anchor: 'middle', size: 6, family: 'Helvetcia Neue, Helvetcia, Arial', weight: '300'});
+    this.rect(1, 3).move(50.5, 0).fill(green).rotate(i * 1, 50, 50)
 
   /* draw minute pointer */
-  this.minutes = this.circle(3).move(49,0).fill(settings.minutes);
+  this.minutes = this.circle(3).move(49,0).fill("#FFF");
+
+  this.focuslabel = this.text('Focus').move(50, 20).fill(red).
+    font({anchor: 'middle', size: 6, family: font, weight: '300'});
+
+  this.focustime = this.text("").move(50, 38).fill(red).
+    font({anchor: 'middle', size: 18, family: font, weight: '300'});
+
+  this.breaklabel = this.text('Break').move(50, 20).fill(green)
+    .font({anchor: 'middle', size: 6, family: font, weight: '300'});
+
+  this.breaktime = this.text("").move(50, 38).fill(green)
+    .font({anchor: 'middle', size: 18, family: font, weight: '300'});
 }
 
 SVG.Clock.prototype = new SVG.Container
 
-// Add time management methods to clock
 SVG.extend(SVG.Clock, {
-  // Start ticking
-  start: function() {
-    var self = this
-
-    setInterval(function() {
-      self.update()
-    }, 1000)
-
-    return this
-  },
-
   update: function(date) {
-    this.setMinutes(date.getMinutes());
-    return this;
+    this.date = date;
+    this.drawMinutesPointer();
+    var minutes = this.date.getMinutes();
+    (minutes >= 25 && minutes <= 29) || (minutes >= 55 && minutes <= 59) ? this.drawBreakLabels() : this.drawFocusLabels();
   },
 
-  setMinutes: function(minutes) {
-    var deg = this.full.minutes * 360 + 360 / 60 * minutes
-    this.minutes.rotate(deg, 50, 50);
-
-    if ((minutes >= 25 && minutes <= 29) || (minutes >= 55 && minutes <= 59))
-      this.drawBreakLabels();
-    else
-      this.drawFocusLabels();
-    return this;
+  drawMinutesPointer: function() {
+    this.minutes.rotate(360 + 360 / 60 * this.date.getMinutes(), 50, 50);
   },
 
   drawFocusLabels: function() {
+    this.focustime.text(this.timeLeftToString());
+    this.focuslabel.show();
+    this.focustime.show();
     this.breaklabel.hide();
     this.breaktime.hide();
-    this.focustime.show();
-    this.focuslabel.show();
   },
 
   drawBreakLabels: function() {
+    this.breaktime.text(this.timeLeftToString());
     this.breaklabel.show();
     this.breaktime.show();
-    this.focustime.hide();
     this.focuslabel.hide();
+    this.focustime.hide();
+  },
+
+  timeLeftToString: function() {
+    var minutes = this.date.getMinutes();
+    var seconds = this.date.getSeconds();
+
+    if (minutes < 25)
+      return this.formatTime(24 - minutes, 60 - seconds);
+    else if (minutes < 30)
+      return this.formatTime(29 - minutes, 60 - seconds);
+    else if (minutes < 55)
+      return this.formatTime(54 - minutes, 60 - seconds);
+    else
+      return this.formatTime(59 - minutes, 60 - seconds);
+  },
+
+  formatTime: function(minutes, seconds) {
+    if (minutes < 10)
+      minutes = "0" + minutes;
+
+    if (seconds < 10)
+      seconds = "0" + seconds;
+
+    return minutes + ":" + seconds;
   }
 })
 
