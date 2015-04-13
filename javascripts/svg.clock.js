@@ -45,16 +45,16 @@ SVG.Clock = function(size, options) {
   /* draw minute pointer */
   this.minutes = this.circle(3).move(49,0).fill("#FFF");
 
-  this.focuslabel = this.text('Focus').move(50, 20).fill(red).
+  this.focusLabel = this.text('Focus').move(50, 20).fill(red).
     font({anchor: 'middle', size: 6, family: font, weight: '300'});
 
-  this.focustime = this.text("").move(50, 38).fill(red).
+  this.focusTime = this.text("").move(50, 38).fill(red).
     font({anchor: 'middle', size: 18, family: font, weight: '300'});
 
-  this.breaklabel = this.text('Break').move(50, 20).fill(green)
+  this.breakLabel = this.text('Break').move(50, 20).fill(green)
     .font({anchor: 'middle', size: 6, family: font, weight: '300'});
 
-  this.breaktime = this.text("").move(50, 38).fill(green)
+  this.breakTime = this.text("").move(50, 38).fill(green)
     .font({anchor: 'middle', size: 18, family: font, weight: '300'});
 }
 
@@ -65,27 +65,27 @@ SVG.extend(SVG.Clock, {
     this.date = date;
     this.drawMinutesPointer();
     var minutes = this.date.getMinutes();
-    (minutes >= 25 && minutes <= 29) || (minutes >= 55 && minutes <= 59) ? this.drawBreakLabels() : this.drawFocusLabels();
+    (minutes >= 25 && minutes <= 29) || (minutes >= 55 && minutes <= 59) ? this.drawbreakLabels() : this.drawfocusLabels();
   },
 
   drawMinutesPointer: function() {
     this.minutes.rotate(360 + 360 / 60 * this.date.getMinutes(), 50, 50);
   },
 
-  drawFocusLabels: function() {
-    this.focustime.text(this.timeLeftToString());
-    this.focuslabel.show();
-    this.focustime.show();
-    this.breaklabel.hide();
-    this.breaktime.hide();
+  drawfocusLabels: function() {
+    this.focusTime.text(this.timeLeftToString());
+    this.focusLabel.show();
+    this.focusTime.show();
+    this.breakLabel.hide();
+    this.breakTime.hide();
   },
 
-  drawBreakLabels: function() {
-    this.breaktime.text(this.timeLeftToString());
-    this.breaklabel.show();
-    this.breaktime.show();
-    this.focuslabel.hide();
-    this.focustime.hide();
+  drawbreakLabels: function() {
+    this.breakTime.text(this.timeLeftToString());
+    this.breakLabel.show();
+    this.breakTime.show();
+    this.focusLabel.hide();
+    this.focusTime.hide();
   },
 
   timeLeftToString: function() {
