@@ -12,6 +12,7 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover; width:100%; height:100%; position:fixed; opacity:.25; }
+        #break-gif .poweredby { position: fixed; right:5%; bottom:90px; }
       a { color: #f1f1f1; text-decoration:none; }
       #canvas { position: relative; height: calc(100% - 80px - 10%); top: 5%; margin: 0 5%; }
       footer {  position: fixed; bottom:0; width:100%; height:80px; background:rgba(255,255,255,.1); line-height:80px; vertical-align:center;  padding:0 5%; }
@@ -33,7 +34,9 @@
   <head>
 
   <body>
-    <div id="break-gif" style="display:none;"></div>
+    <div id="break-gif" style="display:none;">
+      <img src="images/poweredby.png" class="poweredby" />
+    </div>
     <figure id="canvas"></figure>
 
     <footer>
@@ -59,7 +62,6 @@
       <p>
         The source code is available on <a href="https://github.com/alexisbernard/teamodoro" target="_blank">Github</a> and is released under the MIT license.
       </p>
-      <p>GIF images powered by <a href="http://http://giphy.com/" target="_blank">Giphy</a>.<p>
     </div>
 
     <audio controls="controls" style="display:none;" id="beep">
