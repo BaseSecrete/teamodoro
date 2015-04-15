@@ -45,7 +45,7 @@ Teamodoro = {
       return;
 
     var request = new XMLHttpRequest();
-    request.open("GET", "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=relax", true);
+    request.open("GET", "http://api.giphy.com/v1/gifs/random?api_key=l41lOAgtfPWzS35sY&tag=relax", true);
 
     request.onload = function() {
       if (request.status >= 200 && request.status < 400) {
