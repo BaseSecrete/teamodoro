@@ -29,7 +29,7 @@ Teamodoro = {
   },
 
   timeCallback: function(response) {
-    this.timeDifference = new Date - new Date(response.datetime);
+    this.timeDifference = new Date() - new Date(response.datetime);
   },
 
   getMinutes: function() {
@@ -82,4 +82,4 @@ Teamodoro = {
       this.lastMinute = minutesLeft;
     }
   },
-}
+};
