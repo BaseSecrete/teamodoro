@@ -3,9 +3,9 @@ SVG.Clock = function(size, options) {
   this.date = new Date;
 
   var i;
-  var red = "#EF2B59";
-  var green = "#9FD356";
-  var font = "Helvetcia Neue, Helvetcia, Arial";
+  var red = "#F8333C";
+  var green = "#20BF55";
+  var font = "Signika, sans-serif";
 
   /* create nested svg element */
   this.constructor.call(this, SVG.create('svg'));
@@ -17,45 +17,48 @@ SVG.Clock = function(size, options) {
   /* create base plate */
   this.plate = this.ellipse(100, 100).fill("transparent")
 
-  /* bar every five minutes */
-  for (i = 59; i >= 0; i--)
-    this.rect(1, 3).move(50, 3).fill("rgba(255,255,255,.1)").rotate(i * 30, 50, 50)
-
   /* small bar every minute */
-  for (i = 59; i >= 0; i--)
-    if (i % 5 != 0)
-      this.rect(1, 1).move(50, 3).fill("rgba(255,255,255,.1)").rotate(i * 6, 50, 50)
+    for (i = 59; i >= 0; i--)
+      if (i % 5 != 0)
+        this.rect(1, 1).move(50, 4).fill("rgba(255,255,255,.1)").rotate(i * 6, 50, 50)
+  /* bar every five minutes */
+    for (i = 59; i >= 0; i--)
+      this.rect(1, 3).move(50, 4).fill("rgba(255,255,255,.1)").rotate(i * 30, 50, 50)
+
+
 
   /* pomodoro1 */
   for (i = 149; i >= 0; i--)
-    this.rect(1, 3).move(50, 0).fill(red).rotate(i * 1, 50, 50)
+    this.rect(1, 4).move(50, 0).fill(red).rotate(i * 1, 50, 50)
 
   /* pomodoro2 */
   for (i = 329; i >= 180; i--)
-    this.rect(1, 3).move(50, 0).fill(red).rotate(i * 1, 50, 50)
+    this.rect(1, 4).move(50, 0).fill(red).rotate(i * 1, 50, 50)
 
   /* break1 */
   for (i = 359; i >= 330; i--)
-    this.rect(1, 3).move(50, 0).fill(green).rotate(i * 1, 50, 50)
+    this.rect(1, 4).move(50, 0).fill(green).rotate(i * 1, 50, 50)
 
   /* break2 */
   for (i = 179; i >= 150; i--)
-    this.rect(1, 3).move(50, 0).fill(green).rotate(i * 1, 50, 50)
+    this.rect(1, 4).move(50, 0).fill(green).rotate(i * 1, 50, 50)
+
+
 
   /* draw minute pointer */
-  this.minutes = this.circle(3).move(49,0).fill("#FFF");
+  this.minutes = this.circle(4).move(49, 0).fill("#fff").stroke("#181A21");
 
-  this.focusLabel = this.text('Focus').move(50, 20).fill(red).
-    font({anchor: 'middle', size: 6, family: font, weight: '300'});
+  this.focusLabel = this.text('FOCUS').move(50, 25).fill(red).
+    font({anchor: 'middle', size: 6, family: font, weight: '300', length: '50px'});
 
-  this.focusTime = this.text("").move(50, 38).fill(red).
-    font({anchor: 'middle', size: 18, family: font, weight: '600'});
+  this.focusTime = this.text("").move(50, 35).fill(red).
+    font({anchor: 'middle', size: 24, family: font, weight: '700'});
 
-  this.breakLabel = this.text('Break').move(50, 20).fill(green)
+  this.breakLabel = this.text('BREAK').move(50, 25).fill(green)
     .font({anchor: 'middle', size: 6, family: font, weight: '300'});
 
-  this.breakTime = this.text("").move(50, 38).fill(green)
-    .font({anchor: 'middle', size: 18, family: font, weight: '600'});
+  this.breakTime = this.text("").move(50, 35).fill(green)
+    .font({anchor: 'middle', size: 24, family: font, weight: '700'});
 }
 
 SVG.Clock.prototype = new SVG.Container
