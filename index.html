@@ -23,65 +23,13 @@
        img.logo { height: 48px; position: absolute;
        top: 5%;
        left: 5%; }
-       h2 { font-size: 4.3rem; line-height: 72px; margin: 96px 0 0; font-weight: 700; color:#F8333C; }
-
-       h3 { font-size: 1.728rem; font-weight: 300; line-height: 48px; margin: 48px 0 0; color:#F8333C; }
-       p { margin:0; letter-spacing: 1px; font-weight: 300; }
-
-
-
-       a.btn, .why a.btn { display:inline-block; background:rgba(255, 255, 255, 0.3); color:#181A21; width:48px; height:48px; text-align:center;
-         font-weight:bold; border-radius:50%; line-height:48px; font-size: 1.2rem; font-weight: bold;
-       position:absolute; right:5%; top: 5%; text-decoration: none; }
-       a.btn:hover, .why a.btn:hover { background:rgba(255, 255, 255, 0.5); }
-
-
-      .why { display: none; position: absolute; top:0; right:0; bottom:0; left:0; background:rgba(24,26,33,.95); padding:5% 5% 15%; overflow-y:auto; }
-      .why a { color: #dddcdd; text-decoration:underline; background: transparent; }
-      .close { position:absolute; right:5%; }
-      .credits {  display:inline-block; position:fixed; right:0%; bottom: 0%; background:#20BF55; padding:12px; color:#555; }
-       .credits a {  color:#181A21; text-decoration: none; }
     </style>
   </head>
 
   <body>
     <div id="break-gif" style="display:none;">
-      <a href="http://giphy.com" target="_blank"><img src="images/poweredby.png" class="poweredby" /></a>
     </div>
     <figure id="canvas"></figure>
-
-    <a href="index.html" title="Teamodoro">
-      <img src="images/teamodoro.svg" alt="Teamodoro" class="logo" />
-    </a>
-    <a href="#" class="btn" id="about">?</a>
-    <span class="credits">
-      By <a href="http://basesecrete.com">Base Secrète</a>
-    </span>
-
-    <div class="why" id="why">
-      <a href="index.html" title="Teamodoro">
-        <img src="images/teamodoro.svg" alt="Teamodoro" class="logo" />
-      </a>
-      <a class="btn close" href="#" id="close">X</a>
-      <h2>Teamodoro is a pomodoro timer for teams.</h2>
-      <h3>Pomodoro?</h3>
-      <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals traditionally 25 minutes in length, separated by short breaks. The method is based on the idea that frequent breaks can improve mental agility. <a href="http://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">Read more.</a></p>
-      <h3>Teamodoro?</h3>
-      <p>
-        The Pomodoro techniques works well for individuals. A team willing to use this technique must synchronize in order to prevent interruptions.
-        Interruptions kill productivity and require a significant recovery period.
-        <a href="http://thetomorrowlab.com/2015/01/why-developers-hate-being-interrupted/" target="_blank">Read more.</a>
-      </p>
-      <h3>Source code</h3>
-      <p>
-        The source code is available on <a href="https://github.com/alexisbernard/teamodoro" target="_blank">Github</a> and is released under the MIT license.
-      </p>
-
-      <p>Made by <a href="https://twitter.com/alexis_bernard" target="_blank">@alexis_bernard</a> and <a href="https://twitter.com/antoinem" target="_blank">@antoinem</a>.</p>
-      <span class="credits">
-        By <a href="http://basesecrete.com">Base Secrète</a>
-      </span>
-    </div>
 
     <audio controls="controls" style="display:none;" id="beep">
       <source src="/audio/stop.ogg" type="audio/ogg"/>
@@ -96,15 +44,5 @@
 
   <script type="text/javascript" charset="utf-8">
     document.readyState != "loading" ? Teamodoro.start() : document.addEventListener("DOMContentLoaded", Teamodoro.start.bind(Teamodoro));
-  </script>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-61846155-1', 'auto');
-    ga('send', 'pageview');
-
   </script>
 </html>
