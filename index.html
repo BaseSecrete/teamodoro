@@ -94,5 +94,8 @@
   <script type="text/javascript" src="javascripts/svg.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="javascripts/svg.clock.js" charset="utf-8"></script>
 
+  <script type="text/javascript" charset="utf-8">
+    document.readyState != "loading" ? Teamodoro.start() : document.addEventListener("DOMContentLoaded", Teamodoro.start.bind(Teamodoro));
+  </script>
   <script async defer data-domain="teamodoro.com" src="https://plausible.io/js/plausible.js"></script>
 </html>
